@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data</title>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 300px;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="card-container">
+    <!-- Cards will be dynamically added here -->
+</div>
+
+<script>
+    // Function to fetch data from backend
+    function fetchData() {
+        fetch('fetch_data.php') // Assuming you have a PHP file to fetch data
+            .then(response => response.json())
+            .then(data => displayData(data))
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Function to display data in card format
+    function displayData(data) {
+        var cardContainer = document.getElementById("card-container");
+
+        data.forEach(function(item) {
+            var card = document.createElement("div");
+            card.className = "card";
+
+            var image = document.createElement("img");
+            image.src = item.image;
+            card.appendChild(image);
+
+            var container = document.createElement("div");
+            container.className = "container";
+
+            var name = document.createElement("h4");
+            name.innerHTML = item.name;
+            container.appendChild(name);
+
+            var date = document.createElement("p");
+            date.innerHTML = "Date: " + item.date;
+            container.appendChild(date);
+
+            var note = document.createElement("p");
+            note.innerHTML = "Note: " + item.note;
+            container.appendChild(note);
+
+            card.appendChild(container);
+
+            cardContainer.appendChild(card);
+        });
+    }
+
+    // Call fetchData function to initiate data fetching
+    fetchData();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('julia-koblitz-RlOAwXt2fEA-unsplash.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Add opacity to make text more readable */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .upload-container {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .upload-container:hover {
+            border-color: #007bff;
+        }
+
+        .upload-container img {
+            max-width: 100%;
+            max-height: 200px;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        .upload-input {
+            display: none;
+        }
+
+        .upload-label {
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: block;
+            text-align: center;
+            color: #007bff;
+            font-size: 18px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .input-group input, .input-group textarea {
+            width: calc(100% - 40px);
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .input-group input[type="date"] {
+            width: calc(100% - 24px);
+        }
+
+        .input-group textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .display-btn:hover {
+    background-color: #0056b3; /* Change color as needed */
+}
+.display-btn {
+    display: block;
+    margin-top: 20px; /* Adjust margin as per your design */
+    padding: 10px 20px;
+    background-color: #007bff; /* Change color as needed */
+    color: #fff; /* Change color as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.display-btn:hover {
+    background-color: #0056b3; /* Change color as needed */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="submit.php" method="post" enctype="multipart/form-data">
+            <div class="upload-container">
+                <img id="preview" src="#" alt="Preview Image">
+                <input type="file" id="uploadInput" class="upload-input" name="image" accept="image/*" required>
+                <label for="uploadInput" class="upload-label"><i class="fas fa-cloud-upload-alt"></i> Choose Image</label>
+            </div>
+            <div class="input-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Name" required>
+            </div>
+            <div class="input-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="input-group">
+                <label for="note">Note:</label>
+                <textarea id="note" name="note" placeholder="Note" required></textarea>
+            </div>
+            <div class="input-group">
+                <input type="submit" class="submit-btn" value="Submit">
+            </div>
+        </form>
+        <!-- Display button outside the form -->
+        <button onclick="window.location.href='display.html'" class="display-btn">Display</button>
+    </div>
+</body>
+</html>
